@@ -20,13 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="第4章 处理器体系结构(4.1)">
+  <meta name="description" content="Practice Problem 4.1Determine the byte encoding of the Y86-64 instruction sequence that follows. The line .pos 0x100 indicates that the starting address of the object code should be 0x100. 1234567.pos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 4:Processor Architecture(4.1)">
 <meta property="og:url" content="http://yoursite.com/2020/07/07/Chapter-4-1/index.html">
 <meta property="og:site_name" content="Guangoon&#39;s Blog">
+<meta property="og:description" content="Practice Problem 4.1Determine the byte encoding of the Y86-64 instruction sequence that follows. The line .pos 0x100 indicates that the starting address of the object code should be 0x100. 1234567.pos">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-06T16:05:02.000Z">
-<meta property="article:modified_time" content="2020-07-06T16:10:23.993Z">
+<meta property="article:modified_time" content="2020-07-07T16:03:07.007Z">
 <meta property="article:author" content="Xiaowei Guan">
 <meta name="twitter:card" content="summary">
 
@@ -43,7 +45,7 @@
   };
 </script>
 
-  <title>第4章 处理器体系结构(4.1) | Guangoon's Blog</title>
+  <title>Chapter 4:Processor Architecture(4.1) | Guangoon's Blog</title>
   
 
 
@@ -176,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第4章 处理器体系结构(4.1)
+          Chapter 4:Processor Architecture(4.1)
         </h1>
 
         <div class="post-meta">
@@ -185,10 +187,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-07 00:05:02 / Modified: 00:10:23" itemprop="dateCreated datePublished" datetime="2020-07-07T00:05:02+08:00">2020-07-07</time>
+              <time title="Created: 2020-07-07 00:05:02" itemprop="dateCreated datePublished" datetime="2020-07-07T00:05:02+08:00">2020-07-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-08 00:03:07" itemprop="dateModified" datetime="2020-07-08T00:03:07+08:00">2020-07-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -210,7 +218,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h3 id="Practice-Problem-4-1"><a href="#Practice-Problem-4-1" class="headerlink" title="Practice Problem 4.1"></a>Practice Problem 4.1</h3><p>Determine the byte encoding of the Y86-64 instruction sequence that follows. The line .pos 0x100 indicates that the starting address of the object code should be 0x100.</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">.pos</span> <span class="number">0x100</span> # Start code <span class="meta">at</span> address <span class="number">0x100</span></span><br><span class="line">    irmovq <span class="number">$15</span>,%rbx</span><br><span class="line">    rrmovq %rbx,%rcx</span><br><span class="line"><span class="symbol">loop:</span></span><br><span class="line">    rmmovq %rcx,-<span class="number">3</span>(%rbx)</span><br><span class="line">    addq   %rbx,%rcx</span><br><span class="line">    <span class="keyword">jmp</span> <span class="keyword">loop</span></span><br></pre></td></tr></table></figure>
+<h3 id="Practice-Problem-4-2"><a href="#Practice-Problem-4-2" class="headerlink" title="Practice Problem 4.2"></a>Practice Problem 4.2</h3><p>For each byte sequence listed, determine the Y86-64 instruction sequence it en-codes. If there is some invalid byte in the sequence, show the instruction sequence up to that point and indicate where the invalid value occurs. For each sequence, we show the starting address, then a colon, and then the byte sequence.</p>
+<p>A. 0x100: 30f3fcffffffffffffff40630008000000000000<br>B. 0x200: a06f800c020000000000000030f30a00000000000000<br>C. 0x300: 5054070000000000000010f0b01f<br>D. 0x400: 611373000400000000000000<br>E. 0x500: 6362a0f0</p>
+
     </div>
 
     
@@ -280,6 +292,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Practice-Problem-4-1"><span class="nav-number">1.</span> <span class="nav-text">Practice Problem 4.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Practice-Problem-4-2"><span class="nav-number">2.</span> <span class="nav-text">Practice Problem 4.2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
