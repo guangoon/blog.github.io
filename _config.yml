@@ -64,6 +64,8 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
+        深入理解计算机系统: csapp
+        其他:             other
 tag_map:
 
 # Metadata elements
