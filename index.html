@@ -303,7 +303,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-08 00:03:07" itemprop="dateModified" datetime="2020-07-08T00:03:07+08:00">2020-07-08</time>
+                <time title="Modified: 2020-07-11 13:39:23" itemprop="dateModified" datetime="2020-07-11T13:39:23+08:00">2020-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -341,7 +341,7 @@
 
       
           <h3 id="Practice-Problem-4-1"><a href="#Practice-Problem-4-1" class="headerlink" title="Practice Problem 4.1"></a>Practice Problem 4.1</h3><p>Determine the byte encoding of the Y86-64 instruction sequence that follows. The line .pos 0x100 indicates that the starting address of the object code should be 0x100.</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">.pos</span> <span class="number">0x100</span> # Start code <span class="meta">at</span> address <span class="number">0x100</span></span><br><span class="line">    irmovq <span class="number">$15</span>,%rbx</span><br><span class="line">    rrmovq %rbx,%rcx</span><br><span class="line"><span class="symbol">loop:</span></span><br><span class="line">    rmmovq %rcx,-<span class="number">3</span>(%rbx)</span><br><span class="line">    addq   %rbx,%rcx</span><br><span class="line">    <span class="keyword">jmp</span> <span class="keyword">loop</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">.pos</span> <span class="number">0x100</span> # Start code <span class="meta">at</span> address <span class="number">0x100</span></span><br><span class="line">    irmovq <span class="number">$15</span>, %rbx</span><br><span class="line">    rrmovq %rbx, %rcx</span><br><span class="line"><span class="symbol">loop:</span></span><br><span class="line">    rmmovq %rcx, -<span class="number">3</span>(%rbx)</span><br><span class="line">    addq   %rbx, %rcx</span><br><span class="line">    <span class="keyword">jmp</span> <span class="keyword">loop</span></span><br></pre></td></tr></table></figure>
 <h3 id="Practice-Problem-4-2"><a href="#Practice-Problem-4-2" class="headerlink" title="Practice Problem 4.2"></a>Practice Problem 4.2</h3><p>For each byte sequence listed, determine the Y86-64 instruction sequence it en-codes. If there is some invalid byte in the sequence, show the instruction sequence up to that point and indicate where the invalid value occurs. For each sequence, we show the starting address, then a colon, and then the byte sequence.</p>
 <p>A. 0x100: 30f3fcffffffffffffff40630008000000000000<br>B. 0x200: a06f800c020000000000000030f30a00000000000000<br>C. 0x300: 5054070000000000000010f0b01f<br>D. 0x400: 611373000400000000000000<br>E. 0x500: 6362a0f0</p>
 
