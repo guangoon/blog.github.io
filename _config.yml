@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -64,7 +64,7 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-        深入理解计算机系统: csapp
+        CSAPP:           csapp
         其他:             other
 tag_map:
 
