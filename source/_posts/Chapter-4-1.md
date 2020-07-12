@@ -83,3 +83,72 @@ specifier byte
 One common pattern in machine-level programs is to add a constant value to a register. With the Y86-64 instructions presented thus far, this requires first using an irmovq instruction to set a register to the constant, and then an addq instruction to add this value to the destination register. Suppose we want to add a new instruction iaddq with the following format:
 ![](https://res.cloudinary.com/dbtdrt9af/image/upload/v1594454732/4.3_zitvkl.png)
 This instruction adds the constant value V to register rB. Rewrite the Y86-64 sum function of Figure 4.6 to make use of the iaddq instruction. In the original version, we dedicated registers %r8 and %r9 to hold constant values. Now, we can avoid using those registers altogether.
+**Solution to Problem 4.3**
+Using the iaddq instruction, we can rewrite the sum function as
+```x86asm
+# long sum(long *start, long count)
+# start in %rdi, count in %rsi
+sum:
+    xorq    %rax,%rax         #sum = 0
+    andq    %rsi,%rsi         #Set condition codes
+    jmp     test
+loop:
+    mrmovq  (%rdi),%r10      # Get *start
+    addq    %r10,%rax        # Add to sum
+    iaddq   $8,%rdi          # start++
+    iaddq   $-1,%rsi         # count--
+test:
+    jne    loop              # Stop when 0
+    ret
+```
+----------------------------------------
+### Practice Problem 4.4
+Write Y86-64 code to implement a recursive product function rproduct, based on the following C code:
+```c
+long rproduct(long *start, long count)
+{
+    if (count <= 1)
+        return 1;
+    return *start * rproduct(start+1, count-1);
+}
+```
+Use the same argument passing and register saving conventions as x86-64 code does. You might find it helpful to compile the C code on an x86-64 machine and then translate the instructions to Y86-64.
+***Solution to Problem 4.4***
+Gcc, running on an x86-64 machine, produces the following code for rproduct:
+```x86asm
+long rproduct(long *start, long count)
+start in %rdi, count in %rsi
+rproduct:
+    movl     $1, %eax
+    testq    %rsi, %rsi
+    jle     .L9
+    pushq   %rbx
+    movq    (%rdi), %rbx
+    subq    $1, %rsi
+    addq    $8, %rdi
+    call    rproduct
+    imulq   %rbx, %rax
+    popq    %rbx
+.L9:
+    rep; ret
+```
+This can easily be adapted to produce Y86-64 code
+```x86asm
+# long rproduct(long *start, long
+# start in %rdi, count in %rsi
+rproduct:
+    xorq    %rax,%rax    #Set return value to 1
+    andq    %rsi,%rsi    #Set condition codes
+    je      return       #If count <= 0, return 1
+    pushq   %rbx         #Save callee-saved register
+    mrmovq  (%rdi),%rbx  # Get *start
+    irmovq  $-1,%r10
+    addq    %r10,%rsi    # count--
+    irmovq  $8,%r10
+    addq    %r10,%rdi    # start++
+    call    rproduct
+    imulq   %rbx,%rax    # Multiply *start to product
+    popq    %rbx         # Restore callee-saved register
+return:
+    ret
+```

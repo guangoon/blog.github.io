@@ -65,6 +65,7 @@ index_generator:
 default_category: uncategorized
 category_map:
         CSAPP:           csapp
+        Flutter:         flutter
         其他:             other
 tag_map:
 
