@@ -152,3 +152,83 @@ rproduct:
 return:
     ret
 ```
+-----------------------------------
+### Practice Problem 4.5
+Modify the Y86-64 code for the sum function (Figure 4.6) to implement a function absSum that computes the sum of absolute values of an array. Use a conditional jump instruction within your inner loop.
+***Solution to Problem 4.5***
+This problem gives you a chance to try your hand at writing assembly code.
+```X86asm
+# long absSum(long *start, long count)
+# start in %rdi, count in %rsi
+absSum:
+        irmovq  $8,%r8           # Constant 8
+        irmovq  $1,%r9           # Constant 1
+        xorq    %rax,%rax        # sum = 0
+        andq    %rsi,%rsi        # Set condition codes
+        jmp     test
+loop:
+        mrmovq (%rdi),%r10      # x = *start
+        xorq   %r11,%r11        # Constant 0
+        subq   %r10,%r11        # -x
+        jle    pos              # Skip if -x <= 0
+        rrmovq %r11,%r10        # x = -x
+pos:
+        addq   %r10,%rax        # Add to sum
+        addq   %r8,%rdi         # start++
+        subq   %r9,%rsi         # count--
+test:
+        jne  loop               # Stop when 0
+        ret
+```
+-------------------------------
+### Practice Problem 4.6
+Modify the Y86-64 code for the sum function (Figure 4.6) to implement a function absSum that computes the sum of absolute values of an array. Use a conditional move instruction within your inner loop.
+***Solution to Problem 4.6***
+his problem gives you a chance to try your hand at writing assembly code with conditional moves. We show only the code for the loop. The rest is the same as for Problem 4.5:
+```x86asm
+loop:
+        mrmovq  (%rdi),%r10     # x = *start
+        xorq    %r11,%r11       # Constant 0
+        subq    %r10,%r11       # -x
+        cmovg   %r11,%r10       # If -x > 0 then x = -x
+        addq    %r10,%rax       # Add to sum
+        addq    %r8,%rdi        # start++
+        subq    %r9,%rsi        # count--
+test:
+        jne     loop            # Stop when 0
+```
+-------------------------------
+### Practice Problem 4.7
+Let us determine the behavior of the instruction pushq %rsp for an x86-64 processor. We could try reading the Intel documentation on this instruction, but a simpler approach is to conduct an experiment on an actual machine. The C compiler would not normally generate this instruction, so we must use hand-generated assembly code for this task. Here is a test function we have written (Web Aside asm:easm on page 214 describes how to write programs that combine C code with handwritten assembly code):
+```x86asm
+.text
+.globl pushtest
+pushtest:
+    movq
+    %rsp, %rax          #Copy stack pointer
+    pushq %rsp          #Push stack pointer
+    popq  %rdx          #Pop it back
+    subq  %rdx, %rax    #Return 0 or 4
+    ret
+```
+In our experiments, we find that function pushtest always returns 0. What does this imply about the behavior of the instruction pushq %rsp under x86-64?
+***Solution to Problem 4.7***
+Although it is hard to imagine any practical use for this particular instruction, it is important when designing a system to avoid any ambiguities in the specification. We want to determine a reasonable convention for the instruction’s behavior and to make sure each of our implementations adheres to this convention. The subq instruction in this test compares the starting value of %rsp to the value pushed onto the stack. The fact that the result of this subtraction is zero implies that the old value of %rsp gets pushed. 
+
+----------------------------------
+### Practice Problem 4.8
+The following assembly-code function lets us determine the behavior of the instruction popq %rsp for x86-64:
+```
+.text
+.globl poptest
+poptest:
+    movq  %rsp, %rdi    #Save stack pointer
+    pushq $0xabcd       #Push test value
+    popq  %rsp          #Pop to stack pointer
+    movq  %rsp, %rax    #Set popped value as return value
+    movq  %rdi, %rsp    #Restore stack pointer
+    ret
+```
+We find this function always returns 0xabcd. What does this imply about the behavior of popq %rsp? What other Y86-64 instruction would have the exact same behavior?
+***Solution to Problem 4.8***
+It is even more difficult to imagine why anyone would want to pop to the stack pointer. Still, we should decide on a convention and stick with it. This code sequence pushes 0xabcd onto the stack, pops to %rsp, and returns the popped value. Since the result equals 0xabcd, we can deduce that popq %rsp sets the stack pointer to the value read from memory. It is therefore equivalent to the instruction mrmovq (%rsp),%rsp.
