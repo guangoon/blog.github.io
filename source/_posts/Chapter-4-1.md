@@ -15,6 +15,7 @@ loop:
     addq   %rbx, %rcx
     jmp loop
 ```
+<!-- more -->
 **Solution to Problem 4.1**
 Encoding instructions by hand is rather tedious, but it will solidify your understanding of the idea that assembly code gets turned into byte sequences by the assembler. In the following output from our Y86-64 assembler, each line shows an address and a byte sequence that starts at that address:
 ```x86asm
@@ -30,7 +31,6 @@ Several features of this encoding are worth noting:
 + Decimal 15 (line 2) has hex representation 0x000000000000000f. Writing the bytes in reverse order gives 0f 00 00 00 00 00 00 00.
 + Decimal −3 (line 5) has hex representation 0xfffffffffffffffd. Writing the bytes in reverse order gives fd ff ff ff ff ff ff ff.
 + The code starts at address 0x100. The first instruction requires 10 bytes, while the second requires 2. Thus, the loop target will be 0x0000010c. Writing these bytes in reverse order gives 0c 01 00 00 00 00 00 00.
-<!-- more -->
 ---------------------------------------
 ### Practice Problem 4.2  
 For each byte sequence listed, determine the Y86-64 instruction sequence it en-codes. If there is some invalid byte in the sequence, show the instruction sequence up to that point and indicate where the invalid value occurs. For each sequence, we show the starting address, then a colon, and then the byte sequence.

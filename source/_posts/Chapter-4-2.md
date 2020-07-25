@@ -10,7 +10,7 @@ Write an HCL expression for a signal xor, equal to the exclusive-or of inputs a 
 The exclusive-or function requires that the 2 bits have opposite values:
 bool xor = (!a && b) || (a && !b);
 In general, the signals eq and xor will be complements of each other. That is,one will equal 1 whenever the other is 0.
-
+<!-- more -->
 -------------------------------
 ### Practice Problem 4.10
 Suppose you want to implement a word-level equality circuit using the exclusive-or circuits from Problem 4.9 rather than from bit-level equality circuits. Design such a circuit for a 64-bit word consisting of 64 bit-level exclusive-or circuits and two additional logic gates.
