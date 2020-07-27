@@ -1,5 +1,5 @@
 ---
-title: Chapter-4-3
+title: Chapter 4:Processor Architecture(4.3)
 date: 2020-07-17 22:47:40
 tags:
 categories: CSAPP
