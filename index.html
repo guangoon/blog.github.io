@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-11 09:54:28" itemprop="dateModified" datetime="2020-08-11T09:54:28+08:00">2020-08-11</time>
+                <time title="Modified: 2020-08-12 00:09:31" itemprop="dateModified" datetime="2020-08-12T00:09:31+08:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,112 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Practice-Problem-6-1"><a href="#Practice-Problem-6-1" class="headerlink" title="Practice Problem 6.1"></a>Practice Problem 6.1</h3><p>In the following, let r be the number of rows in a DRAM array, c the number of columns, b r the number of bits needed to address the rows, and b c the number of bits needed to address the columns. For each of the following DRAMs, determine the power-of-2 array dimensions that minimize max(b r , b c ), the maximum number of bits needed to address the rows or columns of the array.<br>| Organizetion |   r    |   c    |  br   |  bc    |  max(br, bc)  |<br>|  :—:       |  :—: | :—:  | :—: |  :—: |     :—:     |<br>| 16 × 1       |   4    |   4    |   2   |   2    |       2       |<br>| 16 × 4       |   4    |   4    |   2   |   2    |       2       |<br>| 128 × 8      |   16   |   8    |   4   |   3    |       4       |<br>| 512 × 4      |   32   |   16   |   5   |   4    |       5       |<br>| 1024 × 4     |   32   |   32   |   5   |   5    |       5       |</p>
+          <h3 id="Practice-Problem-6-1"><a href="#Practice-Problem-6-1" class="headerlink" title="Practice Problem 6.1"></a>Practice Problem 6.1</h3><p>In the following, let r be the number of rows in a DRAM array, c the number of columns, b r the number of bits needed to address the rows, and b c the number of bits needed to address the columns. For each of the following DRAMs, determine the power-of-2 array dimensions that minimize max(b r , b c ), the maximum number of bits needed to address the rows or columns of the array.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Organizetion</th>
+<th align="center">r</th>
+<th align="center">c</th>
+<th align="center">br</th>
+<th align="center">bc</th>
+<th align="center">max(br, bc)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">16 × 1</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">16 × 4</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">128 × 8</td>
+<td align="center">16</td>
+<td align="center">8</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">512 × 4</td>
+<td align="center">32</td>
+<td align="center">16</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td align="center">1024 × 4</td>
+<td align="center">32</td>
+<td align="center">32</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+</tbody></table>
+<h3 id="Practice-Problem-6-2"><a href="#Practice-Problem-6-2" class="headerlink" title="Practice Problem 6.2"></a>Practice Problem 6.2</h3><p>What is the capacity of a disk with 3 platters, 15,000 cylinders, an average of 500 sectors per track, and 1,024 bytes per sector?<br><strong><em>Solution to Problem 6.2</em></strong><br>Disk capacity = 1024 * 500 * 15000 * 2 * 3 = 46080000000 = 46.08G</p>
+<h3 id="Practice-Problem-6-3"><a href="#Practice-Problem-6-3" class="headerlink" title="Practice Problem 6.3"></a>Practice Problem 6.3</h3><p>Estimate the average time (in ms) to access a sector on the following disk:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Parameter</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Rotational rate</td>
+<td align="center">12,000 RPM</td>
+</tr>
+<tr>
+<td align="center">T avg seek</td>
+<td align="center">5 ms</td>
+</tr>
+<tr>
+<td align="center">Average number of sectors/track</td>
+<td align="center">300</td>
+</tr>
+</tbody></table>
+<p><strong><em>Solution to Problem 6.3</em></strong><br>The solution to this problem is a straightforward application of the formula for disk access time.<br>The average rotational latency (in ms) is<br>T avg rotation = 1 / 2 * T max rotation<br>               = 2.5 ms<br>The average transfer time is<br>T avg transfer = 0.016 ms<br>Putting it all together, the total estimated access time is<br>T access = T avg seek + T avg rotation + T avg transfer<br>         = 5 ms + 2.5 ms + 0.016 ms<br>         = 7.516 ms</p>
+<h3 id="Practice-Problem-6-4"><a href="#Practice-Problem-6-4" class="headerlink" title="Practice Problem 6.4"></a>Practice Problem 6.4</h3><p>Suppose that a 1 MB file consisting of 512-byte logical blocks is stored on a disk drive with the following characteristics:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Parameter</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Rotational rate</td>
+<td align="center">13,000 RPM</td>
+</tr>
+<tr>
+<td align="center">T avg seek</td>
+<td align="center">6ms</td>
+</tr>
+<tr>
+<td align="center">Average number of sectors/track</td>
+<td align="center">5000</td>
+</tr>
+<tr>
+<td align="center">Surfaces</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">Sector size</td>
+<td align="center">512 bytes</td>
+</tr>
+</tbody></table>
+<p>For each case below, suppose that a program reads the logical blocks of the file sequentially, one after the other, and that the time to position the head over the first block is T avg seek + T avg rotation .<br>A. Best case: Estimate the optimal time (in ms) required to read the file given the best possible mapping of logical blocks to disk sectors (i.e., sequential).<br>B. Random case: Estimate the time (in ms) required to read the file if blocks are mapped randomly to disk sectors.</p>
 
       
     </div>
